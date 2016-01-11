@@ -1,38 +1,45 @@
 class OutfitsController < ApplicationController
 
-before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+before_action :authenticate_user!, only: [:create, :update, :destroy]
 
 def index
-
-end
-
-def new
-
+  @outfits = Outfit.all
+  render json: @outfits.to_json, status: :ok
 end
 
 def create
+  @outfit = Outfit.new(outfit_params)
 
+  if @outfit.save
+    render json: @outfit.to_json, status: :created
+  else
+    render json: @outfit.errors, status: :unprocessable_entity
+  end
 end
 
 def show
-
-end
-
-def edit
-
+  @outfit = Outfit.find(params[:id])
+  render json: @outfit.to_json, status: :ok
 end
 
 def update
-
+  @outfit = Outfit.find(params[:id])
+  if @outfit.update(outfit_params)
+    render json: @outfit.to_json, status: :ok
+  else
+    render json: @outfit.errors, status: :unprocessable_entity
+  end
 end
 
 def destroy
-
+  @outfit = Outfit.find(params[:id])
+  @outfit.destroy
+  render json: {message: "success"}, status: :ok
 end
 
-# private
-# def profile_params
-#   params.require(:profile).permit(:info, :facebook_url, :blog_url, :other_url)
-# end
+private
+def outfit_params
+  params.require(:outfit).permit(:name)
+end
 
 end

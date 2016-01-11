@@ -1,38 +1,45 @@
 class ItemsController < ApplicationController
 
-before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+before_action :authenticate_user!, only: [:create, :update, :destroy]
 
 def index
-
-end
-
-def new
-
+  @items = Item.all
+  render json: @items.to_json, status: :ok
 end
 
 def create
+  @item = Item.new(item_params)
 
+  if @item.save
+    render json: @item.to_json, status: :created
+  else
+    render json: @item.errors, status: :unprocessable_entity
+  end
 end
 
 def show
-
-end
-
-def edit
-
+  @item = Item.find(params[:id])
+  render json: @item.to_json, status: :ok
 end
 
 def update
-
+  @item = Item.find(params[:id])
+  if @item.update(item_params)
+    render json: @item.to_json, status: :ok
+  else
+    render json: @item.errors, status: :unprocessable_entity
+  end
 end
 
 def destroy
-
+  @item = Item.find(params[:id])
+  @item.destroy
+  render json: {message: "success"}, status: :ok
 end
 
-# private
-# def profile_params
-#   params.require(:profile).permit(:info, :facebook_url, :blog_url, :other_url)
-# end
+private
+def item_params
+  params.require(:item).permit(:name, :description, :category, :image)
+end
 
 end
