@@ -1,4 +1,3 @@
 class Tag < ActiveRecord::Base
-  has_many :items, through: :items_tags
-
+  has_and_belongs_to_many :items
 end
