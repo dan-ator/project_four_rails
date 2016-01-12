@@ -7,13 +7,13 @@ Outfit.destroy_all
 OutfitItem.destroy_all
 Tag.destroy_all
 
-Item.create!(name: "red shirt", description: "short-sleeved red button down shirt", category: "shirt", image: "" )
-Item.create!(name: "blue shirt", description: "long-sleeved blue button down shirt", category: "shirt", image: "" )
-Item.create!(name: "purple shirt", description: "long-sleeved purple button down shirt", category: "shirt", image: "" )
-Item.create!(name: "pink pants", description: "pink corduroy pants", category: "pants", image: "" )
-Item.create!(name: "blue pants", description: "dark blue denim pants", category: "pants", image: "" )
-Item.create!(name: "brown belt", description: "leather brown belt, wide", category: "belts", image: "" )
-Item.create!(name: "brown shoes", description: "leather brown dress shoes", category: "shirt", image: "" )
+Item.create!(name: "red shirt", description: "short-sleeved red button down shirt", category: "shirt", image: "", color: "red", fabric_type: "polyester" )
+Item.create!(name: "blue shirt", description: "long-sleeved blue button down shirt", category: "shirt", image: "", color: "blue", fabric_type: "cotton" )
+Item.create!(name: "purple shirt", description: "long-sleeved purple button down shirt", category: "shirt", image: "", color: "purple", fabric_type: "wool" )
+Item.create!(name: "pink pants", description: "pink corduroy pants", category: "pants", image: "", color: "pink", fabric_type: "cotton" )
+Item.create!(name: "blue pants", description: "dark blue denim pants", category: "pants", image: "", color: "dark blue", fabric_type: "cotton" )
+Item.create!(name: "brown belt", description: "leather brown belt, wide", category: "belts", image: "", color: "brown", fabric_type: "leather" )
+Item.create!(name: "brown shoes", description: "leather brown dress shoes", category: "shirt", image: "", color: "brown", fabric_type: "leather" )
 
 Tag.create!(name: "fancy")
 Tag.create!(name: "casual")
