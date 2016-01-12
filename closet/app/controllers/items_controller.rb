@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
 
-before_action :authenticate_user!, only: [:create, :update, :destroy]
+skip_before_filter  :verify_authenticity_token
 
 def index
   @items = Item.all
