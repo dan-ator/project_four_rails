@@ -24,7 +24,8 @@ Tag.create!(name: "winter")
 
 items = Item.all
 
-outfit_names = ["dressy", "fancy", "casual"]
+outfit_names = ["brian", "mike", "carl"]
+categories = ["dressy", "fancy", "casual"]
 
 outfit_names.each do |name|
   current_outfit = Outfit.create!(name: name)
