@@ -8,6 +8,7 @@ def index
 end
 
 def create
+  Rails.logger.info(params)
   @item = Item.new(item_params)
 
   if @item.save
