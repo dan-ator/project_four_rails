@@ -8,9 +8,8 @@ def index
 end
 
 def create
-  Rails.logger.info(params)
   @item = Item.new(item_params)
-
+  @item.image = params[:file]
   if @item.save
     render json: @item.to_json, status: :created
   else
@@ -38,9 +37,25 @@ def destroy
   render json: {message: "success"}, status: :ok
 end
 
+def add_outfit_item
+  @item = Item.find(params[:id])
+  @item.outfit_items.new(item_params)
+  if @item.outfit_items.save
+    render json: @item.outfit_items.to_json, status: :created
+  else
+    render json: @item.outfit_items.errors, status: :unprocessable_entity
+  end
+end
+
+def remove_outfit_item
+  @item = Item.find(params[:id])
+  @item.outfit_items.destroy_all
+  render json: {message: "success"}, status: :ok
+end
+
 private
 def item_params
-  params.require(:item).permit(:name, :description, :category, :image, :color, :fabric_type)
+  params.permit(:name, :description, :category, :image, :color, :fabric_type)
 end
 
 end

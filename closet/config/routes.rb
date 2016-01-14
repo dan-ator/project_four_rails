@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   root to: "welcome#index"
   resources :items , except: [:new, :edit] do
-    resources :outfit_items
+    member do
+      post 'add_outfit_item'
+      delete 'remove_outfit_item'
+    end
   end
   resources :outfits , except: [:new, :edit] do
     resources :outfit_items

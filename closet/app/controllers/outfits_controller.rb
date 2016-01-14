@@ -39,7 +39,7 @@ end
 
 private
 def outfit_params
-  params.require(:outfit).permit(:name)
+  params.require(:outfit).permit(:name, :category)
 end
 
 end
