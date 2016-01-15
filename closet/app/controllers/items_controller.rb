@@ -39,7 +39,7 @@ end
 
 def add_outfit_item
   @item = Item.find(params[:id])
-  @item.outfit_items.new(item_params)
+  @item.outfit_items.create(item_params)
   if @item.outfit_items.save
     render json: @item.outfit_items.to_json, status: :created
   else
