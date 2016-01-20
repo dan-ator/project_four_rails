@@ -4,12 +4,13 @@ Rails.application.routes.draw do
   root to: "welcome#index"
   resources :items , except: [:new, :edit] do
     member do
-      post 'add_outfit_item'
-      delete 'remove_outfit_item'
+      post 'add_to_outfit'
     end
   end
   resources :outfits , except: [:new, :edit] do
-    resources :outfit_items
+    member do
+      delete 'remove_from_outfit'
+    end
   end
   resources :tags , except: [:new, :edit]
 

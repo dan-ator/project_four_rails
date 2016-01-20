@@ -37,6 +37,14 @@ def destroy
   render json: {message: "success"}, status: :ok
 end
 
+def remove_from_outfit
+  @item = Item.find(params[:id])
+  @outfit = Outfit.find(params[:outfit_id])
+  @outfit_item = @outfit.outfit_item
+  @outfit_item.destroy
+  render json: {message: "success"}, status: :ok
+end
+
 private
 def outfit_params
   params.require(:outfit).permit(:name, :category)

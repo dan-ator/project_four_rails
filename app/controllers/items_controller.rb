@@ -37,21 +37,18 @@ def destroy
   render json: {message: "success"}, status: :ok
 end
 
-def add_outfit_item
+def add_to_outfit
   @item = Item.find(params[:id])
-  @item.outfit_items.create(item_params)
-  if @item.outfit_items.save
-    render json: @item.outfit_items.to_json, status: :created
+  @outfit = Outfit.find(params[:outfit_id])
+  @new_outfit_item = OutfitItem.new({item: @item, outfit: @outfit})
+  if @new_outfit_item.save
+    render json: @new_outfit_item.to_json, status: :created
   else
-    render json: @item.outfit_items.errors, status: :unprocessable_entity
+    render json: @new_outfit_item.errors, status: :unprocessable_entity
   end
 end
 
-def remove_outfit_item
-  @item = Item.find(params[:id])
-  @item.outfit_items.destroy_all
-  render json: {message: "success"}, status: :ok
-end
+
 
 private
 def item_params
