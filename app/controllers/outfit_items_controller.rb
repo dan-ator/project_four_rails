@@ -3,43 +3,30 @@ class OutfitItemsController < ApplicationController
 skip_before_filter :verify_authenticity_token
 
 def index
-  @outfit_items = OutfitItem.all
-  render json: @outfit_items.to_json, status: :ok
+  @outfit = Outfit.find(params[:outfit_id])
+  @outfit_items = @outfit.outfit_items
+  @items = @outfit_items.map { |outfit_item|outfit_item.item  }
+  render json: @items.to_json, status: :ok
 end
 
-def create
-  @outfit_item = Outfit.new(outfit_params)
 
-  if @outfit_item.save
-    render json: @outfit_item.to_json, status: :created
-  else
-    render json: @outfit_item.errors, status: :unprocessable_entity
-  end
-end
 
-def show
-  @outfit_item = Outfit.find(params[:id])
-  render json: @outfit_item.to_json, status: :ok
-end
-
-def update
-  @outfit_item = Outfit.find(params[:id])
-  if @outfit_item.update(outfit_params)
-    render json: @outfit_item.to_json, status: :ok
-  else
-    render json: @outfit_item.errors, status: :unprocessable_entity
-  end
-end
-
-def destroy
-  @outfit_item = Outfit.find(params[:id])
-  @outfit_item.destroy
-  render json: {message: "success"}, status: :ok
-end
-
-private
-def outfit_items_params
-  params.require(:outfit_item).permit(:name)
-end
+# def show
+#   @outfit_item = Outfit.find(params[:id])
+#   render json: @outfit_item.to_json, status: :ok
+# end
+#
+#
+#
+# def destroy
+#   @outfit_item = Outfit.find(params[:id])
+#   @outfit_item.destroy
+#   render json: {message: "success"}, status: :ok
+# end
+#
+# private
+# def outfit_items_params
+#   params.require(:outfit_item).permit(:name)
+# end
 
 end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       delete 'remove_from_outfit'
     end
+    resources :outfit_items
   end
   resources :tags , except: [:new, :edit]
 
