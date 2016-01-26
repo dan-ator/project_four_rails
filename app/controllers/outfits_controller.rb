@@ -38,7 +38,6 @@ def destroy
 end
 
 def remove_from_outfit
-  @item = Item.find(params[:id])
   @outfit = Outfit.find(params[:outfit_id])
   @outfit_item = @outfit.outfit_item
   @outfit_item.destroy

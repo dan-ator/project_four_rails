@@ -9,24 +9,4 @@ def index
   render json: @items.to_json, status: :ok
 end
 
-
-
-# def show
-#   @outfit_item = Outfit.find(params[:id])
-#   render json: @outfit_item.to_json, status: :ok
-# end
-#
-#
-#
-# def destroy
-#   @outfit_item = Outfit.find(params[:id])
-#   @outfit_item.destroy
-#   render json: {message: "success"}, status: :ok
-# end
-#
-# private
-# def outfit_items_params
-#   params.require(:outfit_item).permit(:name)
-# end
-
 end
