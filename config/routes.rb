@@ -5,12 +5,10 @@ Rails.application.routes.draw do
   resources :items , except: [:new, :edit] do
     member do
       post 'add_to_outfit'
-    end
-  end
-  resources :outfits , except: [:new, :edit] do
-    member do
       delete 'remove_from_outfit'
     end
+  end
+  resources :outfits , except: [:new, :edit] do      
     resources :outfit_items
   end
   resources :tags , except: [:new, :edit]

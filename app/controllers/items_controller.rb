@@ -48,7 +48,11 @@ def add_to_outfit
   end
 end
 
-
+def remove_from_outfit
+  @outfit_item = OutfitItem.find(params[:outfit_item_id])
+  @outfit_item.destroy
+  render json: {message: "success"}, status: :ok
+end
 
 private
 def item_params
