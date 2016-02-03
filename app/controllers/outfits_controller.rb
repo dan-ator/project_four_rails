@@ -1,6 +1,6 @@
 class OutfitsController < ApplicationController
 
-skip_before_filter :verify_authenticity_token
+before_action :authenticate_user!
 
 def index
   @outfits = Outfit.all
