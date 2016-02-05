@@ -1,6 +1,6 @@
 class OutfitsController < ApplicationController
 
-before_action :authenticate_user!
+# before_action :authenticate_user!
 
 def index
   @outfits = Outfit.all
